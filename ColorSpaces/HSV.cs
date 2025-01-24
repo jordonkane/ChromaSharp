@@ -10,9 +10,9 @@ namespace ChromaSharp.ColorSpaces
 
         public Hsv(double h, double s, double v)
         {
-            H = Utils.Clamp(h, 0.0, 360.0);
-            S = Utils.Clamp(s, 0.0, 1.0);
-            V = Utils.Clamp(v, 0.0, 1.0);
+            H = ChromaSharp.Utils.Utils.Clamp(h, 0.0, 360.0);
+            S = ChromaSharp.Utils.Utils.Clamp(s, 0.0, 1.0);
+            V = ChromaSharp.Utils.Utils.Clamp(v, 0.0, 1.0);
         }
 
         public override string ToString() => $"Hsv({H:F2}, {S:F2}, {V:F2})";

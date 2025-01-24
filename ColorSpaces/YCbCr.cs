@@ -10,9 +10,9 @@ namespace ChromaSharp.ColorSpaces
 
         public Ycbcr(double y, double cb, double cr)
         {
-            Y = Utils.Clamp(y, 0.0, 255.0);
-            Cb = Utils.Clamp(cb, 0.0, 255.0);
-            Cr = Utils.Clamp(cr, 0.0, 255.0);
+            Y = ChromaSharp.Utils.Utils.Clamp(y, 0.0, 255.0);
+            Cb = ChromaSharp.Utils.Utils.Clamp(cb, 0.0, 255.0);
+            Cr = ChromaSharp.Utils.Utils.Clamp(cr, 0.0, 255.0);
         }
 
         public override string ToString() => $"Ycbcr({Y:F2}, {Cb:F2}, {Cr:F2})";

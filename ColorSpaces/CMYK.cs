@@ -11,10 +11,10 @@ namespace ChromaSharp.ColorSpaces
 
         public Cmyk(double c, double m, double y, double k)
         {
-            C = Utils.Clamp(c, 0.0, 1.0);
-            M = Utils.Clamp(m, 0.0, 1.0);
-            Y = Utils.Clamp(y, 0.0, 1.0);
-            K = Utils.Clamp(k, 0.0, 1.0);
+            C = ChromaSharp.Utils.Utils.Clamp(c, 0.0, 1.0);
+            M = ChromaSharp.Utils.Utils.Clamp(m, 0.0, 1.0);
+            Y = ChromaSharp.Utils.Utils.Clamp(y, 0.0, 1.0);
+            K = ChromaSharp.Utils.Utils.Clamp(k, 0.0, 1.0);
         }
 
         public override string ToString() => $"Cmyk({C:F2}, {M:F2}, {Y:F2}, {K:F2})";

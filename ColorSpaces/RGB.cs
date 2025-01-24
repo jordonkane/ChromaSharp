@@ -10,9 +10,9 @@ namespace ChromaSharp.ColorSpaces
 
         public Rgb(int r, int g, int b)
         {
-            R = Utils.Clamp(r, 0, 255);
-            G = Utils.Clamp(g, 0, 255);
-            B = Utils.Clamp(b, 0, 255);
+            R = ChromaSharp.Utils.Utils.Clamp(r, 0, 255);
+            G = ChromaSharp.Utils.Utils.Clamp(g, 0, 255);
+            B = ChromaSharp.Utils.Utils.Clamp(b, 0, 255);
         }
 
         public override string ToString() => $"Rgb({R}, {G}, {B})";
