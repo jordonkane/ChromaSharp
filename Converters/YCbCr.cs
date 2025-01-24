@@ -1,19 +1,8 @@
 namespace ChromaSharp.ColorSpaces
 {
-    public class Ycbcr
+    public static class Ycbcr
     {
-        public double Y { get; }
-        public double Cb { get; }
-        public double Cr { get; }
-
-        public Ycbcr(double y, double cb, double cr)
-        {
-            Y = y;
-            Cb = cb;
-            Cr = cr;
-        }
-
-        public Rgb ToRgb()
+        public static Rgb ToRgb(double Y, double Cb, double Cr)
         {
             int r = (int)(Y + 1.402 * (Cr - 128));
             int g = (int)(Y - 0.344136 * (Cb - 128) - 0.714136 * (Cr - 128));
@@ -25,45 +14,45 @@ namespace ChromaSharp.ColorSpaces
             );
         }
 
-        public Cmyk ToCmyk()
+        public static Cmyk ToCmyk(double Y, double Cb, double Cr)
         {
-            Rgb rgb = ToRgb();
+            Rgb rgb = ToRgb(Y, Cb, Cr);
             return rgb.ToCmyk();
         }
 
-        public Hsv ToHsv()
+        public static Hsv ToHsv(double Y, double Cb, double Cr)
         {
-            Rgb rgb = ToRgb();
+            Rgb rgb = ToRgb(Y, Cb, Cr);
             return rgb.ToHsv();
         }
 
-        public Hsl ToHsl()
+        public static Hsl ToHsl(double Y, double Cb, double Cr)
         {
-            Rgb rgb = ToRgb();
+            Rgb rgb = ToRgb(Y, Cb, Cr);
             return rgb.ToHsl();
         }
 
-        public static Ycbcr FromRgb(Rgb rgb)
+        public static (double Y, double Cb, double Cr) FromRgb(Rgb rgb)
         {
             double y = 0.299 * rgb.R + 0.587 * rgb.G + 0.114 * rgb.B;
             double cb = 128 + (-0.169 * rgb.R - 0.331 * rgb.G + 0.5 * rgb.B);
             double cr = 128 + (0.5 * rgb.R - 0.419 * rgb.G - 0.081 * rgb.B);
-            return new Ycbcr(y, cb, cr);
+            return (y, cb, cr);
         }
 
-        public static Ycbcr FromCmyk(Cmyk cmyk)
+        public static (double Y, double Cb, double Cr) FromCmyk(Cmyk cmyk)
         {
             Rgb rgb = Rgb.FromCmyk(cmyk);
             return FromRgb(rgb);
         }
 
-        public static Ycbcr FromHsv(Hsv hsv)
+        public static (double Y, double Cb, double Cr) FromHsv(Hsv hsv)
         {
             Rgb rgb = Rgb.FromHsv(hsv);
             return FromRgb(rgb);
         }
 
-        public static Ycbcr FromHsl(Hsl hsl)
+        public static (double Y, double Cb, double Cr) FromHsl(Hsl hsl)
         {
             Rgb rgb = Rgb.FromHsl(hsl);
             return FromRgb(rgb);
