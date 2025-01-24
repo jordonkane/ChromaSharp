@@ -1,8 +1,19 @@
 namespace ChromaSharp.ColorSpaces
 {
-    public static class Hsv
+    public class Hsv
     {
-        public static Rgb ToRgb(double H, double S, double V)
+        public double H { get; }
+        public double S { get; }
+        public double V { get; }
+
+        public Hsv(double h, double s, double v)
+        {
+            H = h;
+            S = s;
+            V = v;
+        }
+
+        public Rgb ToRgb()
         {
             double h = H / 360.0;
             int i = (int)(h * 6);
@@ -29,26 +40,24 @@ namespace ChromaSharp.ColorSpaces
             );
         }
 
-        public static Cmyk ToCmyk(double H, double S, double V)
+        public Cmyk ToCmyk()
         {
-            Rgb rgb = ToRgb(H, S, V);
-            return rgb.ToCmyk();
+            return ToRgb().ToCmyk();
         }
 
-        public static Ycbcr ToYcbcr(double H, double S, double V)
+        public Ycbcr ToYcbcr()
         {
-            Rgb rgb = ToRgb(H, S, V);
-            return rgb.ToYcbcr();
+            return ToRgb().ToYcbcr();
         }
 
-        public static Hsl ToHsl(double H, double S, double V)
+        public Hsl ToHsl()
         {
             double l = V * (1 - S / 2);
             double sl = l == 0 || l == 1 ? 0 : (V - l) / Math.Min(l, 1 - l);
             return new Hsl(H, sl, l);
         }
 
-        public static (double H, double S, double V) FromRgb(Rgb rgb)
+        public static Hsv FromRgb(Rgb rgb)
         {
             double r = rgb.R / 255.0;
             double g = rgb.G / 255.0;
@@ -58,39 +67,37 @@ namespace ChromaSharp.ColorSpaces
             double min = Math.Min(r, Math.Min(g, b));
             double delta = max - min;
 
-            double H = 0, S = 0, V = max;
+            double h = 0, s = 0, v = max;
 
             if (delta != 0)
             {
-                S = delta / max;
-                if (max == r) H = (g - b) / delta + (g < b ? 6 : 0);
-                else if (max == g) H = (b - r) / delta + 2;
-                else if (max == b) H = (r - g) / delta + 4;
-                H *= 60;
+                s = delta / max;
+                if (max == r) h = (g - b) / delta + (g < b ? 6 : 0);
+                else if (max == g) h = (b - r) / delta + 2;
+                else if (max == b) h = (r - g) / delta + 4;
+                h *= 60;
             }
 
-            return (H, S, V);
+            return new Hsv(h, s, v);
         }
 
-        public static (double H, double S, double V) FromCmyk(Cmyk cmyk)
+        public static Hsv FromCmyk(Cmyk cmyk)
         {
-            Rgb rgb = Rgb.FromCmyk(cmyk);
-            return FromRgb(rgb);
+            return FromRgb(cmyk.ToRgb());
         }
 
-        public static (double H, double S, double V) FromYcbcr(Ycbcr ycbcr)
+        public static Hsv FromYcbcr(Ycbcr ycbcr)
         {
-            Rgb rgb = Rgb.FromYcbcr(ycbcr);
-            return FromRgb(rgb);
+            return FromRgb(ycbcr.ToRgb());
         }
 
-        public static (double H, double S, double V) FromHsl(Hsl hsl)
+        public static Hsv FromHsl(Hsl hsl)
         {
             double s = hsl.S;
             double l = hsl.L;
             double v = l + s * Math.Min(l, 1 - l);
             double sv = v == 0 ? 0 : 2 * (1 - l / v);
-            return (hsl.H, sv, v);
+            return new Hsv(hsl.H, sv, v);
         }
     }
 }

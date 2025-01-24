@@ -4,14 +4,11 @@ namespace ChromaSharp.ColorSpaces
     {
         public static Rgb ToRgb(double Y, double Cb, double Cr)
         {
-            int r = (int)(Y + 1.402 * (Cr - 128));
-            int g = (int)(Y - 0.344136 * (Cb - 128) - 0.714136 * (Cr - 128));
-            int b = (int)(Y + 1.772 * (Cb - 128));
-            return new Rgb(
-                Math.Max(0, Math.Min(255, r)),
-                Math.Max(0, Math.Min(255, g)),
-                Math.Max(0, Math.Min(255, b))
-            );
+            int r = Clamp((int)(Y + 1.402 * (Cr - 128)));
+            int g = Clamp((int)(Y - 0.344136 * (Cb - 128) - 0.714136 * (Cr - 128)));
+            int b = Clamp((int)(Y + 1.772 * (Cb - 128)));
+
+            return new Rgb(r, g, b);
         }
 
         public static Cmyk ToCmyk(double Y, double Cb, double Cr)
@@ -56,6 +53,11 @@ namespace ChromaSharp.ColorSpaces
         {
             Rgb rgb = Rgb.FromHsl(hsl);
             return FromRgb(rgb);
+        }
+
+        private static int Clamp(int value)
+        {
+            return Math.Max(0, Math.Min(255, value));
         }
     }
 }
