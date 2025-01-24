@@ -13,7 +13,6 @@ namespace ChromaSharp.ColorSpaces
             B = b;
         }
 
-        // Convert RGB to CMYK
         public Cmyk ToCmyk()
         {
             double r = R / 255.0, g = G / 255.0, b = B / 255.0;
@@ -24,7 +23,6 @@ namespace ChromaSharp.ColorSpaces
             return new Cmyk(C, M, Y, K);
         }
 
-        // Convert RGB to HSV
         public Hsv ToHsv()
         {
             double r = R / 255.0, g = G / 255.0, b = B / 255.0;
@@ -45,7 +43,6 @@ namespace ChromaSharp.ColorSpaces
             return new Hsv(H * 360, S, V);
         }
 
-        // Convert RGB to HSL
         public Hsl ToHsl()
         {
             double r = R / 255.0, g = G / 255.0, b = B / 255.0;
@@ -66,7 +63,6 @@ namespace ChromaSharp.ColorSpaces
             return new Hsl(H * 360, S, L);
         }
 
-        // Convert RGB to YCbCr
         public Ycbcr ToYcbcr()
         {
             double y = 0.299 * R + 0.587 * G + 0.114 * B;
@@ -75,7 +71,6 @@ namespace ChromaSharp.ColorSpaces
             return new Ycbcr(y, cb, cr);
         }
 
-        // static methods to create Rgb from other color spaces
         public static Rgb FromCmyk(Cmyk cmyk)
         {
             int r = (int)(255 * (1 - cmyk.C) * (1 - cmyk.K));
