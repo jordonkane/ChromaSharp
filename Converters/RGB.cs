@@ -1,19 +1,8 @@
 namespace ChromaSharp.ColorSpaces
 {
-    public class Rgb
+    public static class Rgb
     {
-        public int R { get; }
-        public int G { get; }
-        public int B { get; }
-
-        public Rgb(int r, int g, int b)
-        {
-            R = r;
-            G = g;
-            B = b;
-        }
-
-        public Cmyk ToCmyk()
+        public static Cmyk ToCmyk(int R, int G, int B)
         {
             double r = R / 255.0, g = G / 255.0, b = B / 255.0;
             double K = 1 - Math.Max(r, Math.Max(g, b));
@@ -23,7 +12,7 @@ namespace ChromaSharp.ColorSpaces
             return new Cmyk(C, M, Y, K);
         }
 
-        public Hsv ToHsv()
+        public static Hsv ToHsv(int R, int G, int B)
         {
             double r = R / 255.0, g = G / 255.0, b = B / 255.0;
             double max = Math.Max(r, Math.Max(g, b));
@@ -43,7 +32,7 @@ namespace ChromaSharp.ColorSpaces
             return new Hsv(H * 360, S, V);
         }
 
-        public Hsl ToHsl()
+        public static Hsl ToHsl(int R, int G, int B)
         {
             double r = R / 255.0, g = G / 255.0, b = B / 255.0;
             double max = Math.Max(r, Math.Max(g, b));
@@ -63,7 +52,7 @@ namespace ChromaSharp.ColorSpaces
             return new Hsl(H * 360, S, L);
         }
 
-        public Ycbcr ToYcbcr()
+        public static Ycbcr ToYcbcr(int R, int G, int B)
         {
             double y = 0.299 * R + 0.587 * G + 0.114 * B;
             double cb = 128 + (-0.169 * R - 0.331 * G + 0.5 * B);
@@ -71,15 +60,15 @@ namespace ChromaSharp.ColorSpaces
             return new Ycbcr(y, cb, cr);
         }
 
-        public static Rgb FromCmyk(Cmyk cmyk)
+        public static (int R, int G, int B) FromCmyk(Cmyk cmyk)
         {
             int r = (int)(255 * (1 - cmyk.C) * (1 - cmyk.K));
             int g = (int)(255 * (1 - cmyk.M) * (1 - cmyk.K));
             int b = (int)(255 * (1 - cmyk.Y) * (1 - cmyk.K));
-            return new Rgb(r, g, b);
+            return (r, g, b);
         }
 
-        public static Rgb FromHsv(Hsv hsv)
+        public static (int R, int G, int B) FromHsv(Hsv hsv)
         {
             double h = hsv.H / 360.0;
             double s = hsv.S;
@@ -103,10 +92,10 @@ namespace ChromaSharp.ColorSpaces
                 case 5: r = v; g = p; b = q; break;
             }
 
-            return new Rgb((int)(r * 255), (int)(g * 255), (int)(b * 255));
+            return ((int)(r * 255), (int)(g * 255), (int)(b * 255));
         }
 
-        public static Rgb FromHsl(Hsl hsl)
+        public static (int R, int G, int B) FromHsl(Hsl hsl)
         {
             double h = hsl.H / 360.0;
             double s = hsl.S;
@@ -125,15 +114,15 @@ namespace ChromaSharp.ColorSpaces
             else if (h < 5.0 / 6) { r = x; g = 0; b = c; }
             else { r = c; g = 0; b = x; }
 
-            return new Rgb((int)((r + m) * 255), (int)((g + m) * 255), (int)((b + m) * 255));
+            return ((int)((r + m) * 255), (int)((g + m) * 255), (int)((b + m) * 255));
         }
 
-        public static Rgb FromYcbcr(Ycbcr ycbcr)
+        public static (int R, int G, int B) FromYcbcr(Ycbcr ycbcr)
         {
             int r = (int)(ycbcr.Y + 1.402 * (ycbcr.Cr - 128));
             int g = (int)(ycbcr.Y - 0.344136 * (ycbcr.Cb - 128) - 0.714136 * (ycbcr.Cr - 128));
             int b = (int)(ycbcr.Y + 1.772 * (ycbcr.Cb - 128));
-            return new Rgb(r, g, b);
+            return (r, g, b);
         }
     }
 }
