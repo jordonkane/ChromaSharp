@@ -1,0 +1,67 @@
+public static class ColorUtils
+{
+    public static Rgb ToRgb(object color)
+    {
+        return color switch
+        {
+            Ycbcr ycbcr => Ycbcr.ToRgb(ycbcr.Y, ycbcr.Cb, ycbcr.Cr),
+            Hsv hsv => Hsv.ToRgb(hsv.H, hsv.S, hsv.V),
+            Cmyk cmyk => Cmyk.ToRgb(cmyk.C, cmyk.M, cmyk.Y, cmyk.K),
+            Hsl hsl => Hsl.ToRgb(hsl.H, hsl.S, hsl.L),
+            Rgb rgb => rgb, // Already Rgb, return as is
+            _ => throw new ArgumentException($"Unsupported color type: {color.GetType().Name}")
+        };
+    }
+
+    public static Cmyk ToCmyk(object color)
+    {
+        return color switch
+        {
+            Ycbcr ycbcr => Ycbcr.ToRgb(ycbcr.Y, ycbcr.Cb, ycbcr.Cr).ToCmyk(),
+            Hsv hsv => Hsv.ToRgb(hsv.H, hsv.S, hsv.V).ToCmyk(),
+            Hsl hsl => Hsl.ToRgb(hsl.H, hsl.S, hsl.L).ToCmyk(),
+            Rgb rgb => rgb.ToCmyk(),
+            Cmyk cmyk => cmyk, // Already Cmyk, return as is
+            _ => throw new ArgumentException($"Unsupported color type: {color.GetType().Name}")
+        };
+    }
+
+    public static Hsv ToHsv(object color)
+    {
+        return color switch
+        {
+            Ycbcr ycbcr => Ycbcr.ToRgb(ycbcr.Y, ycbcr.Cb, ycbcr.Cr).ToHsv(),
+            Cmyk cmyk => Cmyk.ToRgb(cmyk.C, cmyk.M, cmyk.Y, cmyk.K).ToHsv(),
+            Hsl hsl => Hsl.ToRgb(hsl.H, hsl.S, hsl.L).ToHsv(),
+            Rgb rgb => rgb.ToHsv(),
+            Hsv hsv => hsv, // Already Hsv, return as is
+            _ => throw new ArgumentException($"Unsupported color type: {color.GetType().Name}")
+        };
+    }
+
+    public static Hsl ToHsl(object color)
+    {
+        return color switch
+        {
+            Ycbcr ycbcr => Ycbcr.ToRgb(ycbcr.Y, ycbcr.Cb, ycbcr.Cr).ToHsl(),
+            Cmyk cmyk => Cmyk.ToRgb(cmyk.C, cmyk.M, cmyk.Y, cmyk.K).ToHsl(),
+            Hsv hsv => Hsv.ToRgb(hsv.H, hsv.S, hsv.V).ToHsl(),
+            Rgb rgb => rgb.ToHsl(),
+            Hsl hsl => hsl, // Already Hsl, return as is
+            _ => throw new ArgumentException($"Unsupported color type: {color.GetType().Name}")
+        };
+    }
+
+    public static Ycbcr ToYcbcr(object color)
+    {
+        return color switch
+        {
+            Cmyk cmyk => Cmyk.ToRgb(cmyk.C, cmyk.M, cmyk.Y, cmyk.K).ToYcbcr(),
+            Hsv hsv => Hsv.ToRgb(hsv.H, hsv.S, hsv.V).ToYcbcr(),
+            Hsl hsl => Hsl.ToRgb(hsl.H, hsl.S, hsl.L).ToYcbcr(),
+            Rgb rgb => rgb.ToYcbcr(),
+            Ycbcr ycbcr => ycbcr, // Already Ycbcr, return as is
+            _ => throw new ArgumentException($"Unsupported color type: {color.GetType().Name}")
+        };
+    }
+}
