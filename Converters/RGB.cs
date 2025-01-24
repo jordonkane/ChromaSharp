@@ -36,5 +36,25 @@ namespace ChromaSharp.ColorSpaces
         {
             throw new NotImplementedException();
         }
+
+        public static Rgb FromCmyk(Cmyk cmyk)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static Rgb FromHsv(Hsv hsv)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static Rgb FromHsl(Hsl hsl)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static Rgb FromYcbcr(Ycbcr ycbcr)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
