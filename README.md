@@ -4,6 +4,21 @@ ChromaSharp is a lightweight and efficient C# library for converting between var
 ## How it Works
 #### The color spaces being converted:
 ![10_](https://github.com/user-attachments/assets/9034a350-47dc-4906-bc84-4ed2c3d882f4)
+```csharp
+using ChromaSharp.Utils;
+using ChromaSharp.ColorSpaces;
+
+// Step 1: Define an RGB color
+var rgb = new Rgb(128, 64, 32);
+
+// Step 2: Convert RGB to CMYK
+var cmyk = ColorUtils.ToCmyk(rgb);
+Console.WriteLine($"CMYK: (C: {cmyk.C:F2}, M: {cmyk.M:F2}, Y: {cmyk.Y:F2}, K: {cmyk.K:F2})");
+
+// Step 3: Convert RGB to HSV
+var hsv = ColorUtils.ToHsv(rgb);
+Console.WriteLine($"HSV: (H: {hsv.H:F2}, S: {hsv.S:F2}, V: {hsv.V:F2})");
+```
 
 ## Requirements
 1. `.NET 7.0`
@@ -24,7 +39,7 @@ git clone https://github.com/jordonkane/ChromaSharp.git
 5. Use the `ColorUtils` class for your desired color space conversions.
 
 ### Example Usage
-```markdown
+```csharp
 using ChromaSharp.Utils;
 using ChromaSharp.ColorSpaces;
 
