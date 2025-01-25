@@ -16,10 +16,12 @@ ChromaSharp is a lightweight and efficient C# library for converting between var
 
 ### Example for C#:
 1. Clone the repository
-``` git clone https://github.com/jordonkane/ChromaSharp.git ```
-2. Add ChromaSharp to your .NET project.
-3. Import `ChromaSharp.Utils` and `ChromaSharp.ColorSpaces`.
-4. Use the `ColorUtils` class for your desired color space conversions.
+```
+git clone https://github.com/jordonkane/ChromaSharp.git
+```
+3. Add ChromaSharp to your .NET project.
+4. Import `ChromaSharp.Utils` and `ChromaSharp.ColorSpaces`.
+5. Use the `ColorUtils` class for your desired color space conversions.
 
 ### Example Usage
 ```markdown
