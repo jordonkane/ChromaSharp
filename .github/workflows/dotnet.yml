@@ -19,19 +19,23 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 9.0
+        dotnet-version: 7.0
 
     - name: Restore dependencies
       run: dotnet restore
 
     - name: Build
-      run: dotnet build --no-restore --configuration Release
+      run: dotnet build --configuration Release
 
     - name: Run tests
-      run: dotnet test ChromaSharp.Tests/ChromaSharp.Tests.csproj --no-build --verbosity detailed --logger "trx;LogFileName=test_results.trx"
+      run: |
+        dotnet test ChromaSharp.Tests/ChromaSharp.Tests.csproj \
+          --configuration Release \
+          --verbosity detailed \
+          --logger "trx;LogFileName=test_results.trx"
 
     - name: Upload test results
       uses: actions/upload-artifact@v3
       with:
         name: test-results
-        path: ChromaSharp.Tests/TestResults/test_results.trx
+        path: ChromaSharp.Tests/**/test_results.trx
