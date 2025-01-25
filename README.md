@@ -12,6 +12,25 @@ ChromaSharp is a lightweight and efficient C# library for converting between var
 4. `NUnit.Analyzers` v4.6.0
 5. `coverlet.collector` v6.0.2
 
+## Installation
+
+### Example for C#:
+1. Clone the repository
+``` git clone https://github.com/jordonkane/ChromaSharp.git ```
+2. Add ChromaSharp to your .NET project.
+3. Import `ChromaSharp.Utils` and `ChromaSharp.ColorSpaces`.
+4. Use the `ColorUtils` class for your desired color space conversions.
+
+### Example Usage
+```markdown
+using ChromaSharp.Utils;
+using ChromaSharp.ColorSpaces;
+
+var rgb = new Rgb(100, 150, 200);
+var ycbcr = ColorUtils.ToYcbcr(rgb);
+Console.WriteLine($"YCbCr: ({ycbcr.Y}, {ycbcr.Cb}, {ycbcr.Cr})");
+```
+
 ## How to Contribute
 If you would like to contribute to ChromaSharp, feel free to fork the repository and submit a pull request. Contributions for new features like new color conversion types are welcome!
 1. Fork the repository.
