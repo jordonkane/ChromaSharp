@@ -4,6 +4,7 @@ ChromaSharp is a lightweight and efficient C# library for converting between var
 ## How it Works
 #### The color spaces being converted:
 ![10_](https://github.com/user-attachments/assets/9034a350-47dc-4906-bc84-4ed2c3d882f4)
+#### Example Usage
 ```csharp
 using ChromaSharp.Utils;
 using ChromaSharp.ColorSpaces;
@@ -28,8 +29,6 @@ Console.WriteLine($"HSV: (H: {hsv.H:F2}, S: {hsv.S:F2}, V: {hsv.V:F2})");
 5. `coverlet.collector` v6.0.2
 
 ## Installation
-
-### Example for C#:
 1. Clone the repository
 ```
 git clone https://github.com/jordonkane/ChromaSharp.git
@@ -37,16 +36,6 @@ git clone https://github.com/jordonkane/ChromaSharp.git
 3. Add ChromaSharp to your .NET project.
 4. Import `ChromaSharp.Utils` and `ChromaSharp.ColorSpaces`.
 5. Use the `ColorUtils` class for your desired color space conversions.
-
-### Example Usage
-```csharp
-using ChromaSharp.Utils;
-using ChromaSharp.ColorSpaces;
-
-var rgb = new Rgb(100, 150, 200);
-var ycbcr = ColorUtils.ToYcbcr(rgb);
-Console.WriteLine($"YCbCr: ({ycbcr.Y}, {ycbcr.Cb}, {ycbcr.Cr})");
-```
 
 ## How to Contribute
 If you would like to contribute to ChromaSharp, feel free to fork the repository and submit a pull request. Contributions for new features like new color conversion types are welcome!
