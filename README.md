@@ -6,7 +6,7 @@ ChromaSharp is a lightweight and efficient C# library for converting between var
 ![10_](https://github.com/user-attachments/assets/9034a350-47dc-4906-bc84-4ed2c3d882f4)
 
 ## Requirements
-1. `.NET 7.0`
+1. `.NET` 7.0
 2. `NUnit` v3.13.3
 3. `NUnit3TestAdapter` v4.6.0
 4. `NUnit.Analyzers` v4.6.0
