@@ -1,7 +1,8 @@
 # ChromaSharp
 ChromaSharp is a lightweight and efficient C# library for converting between various color spaces, including RGB, YCbCr, HSL, HSV, and CMYK. Designed for simplicity, precision, and easy integration, it serves as a robust foundation for image processing, graphics rendering, and other color manipulation tasks.
 
-## Features
+## How it Works
+![10_](https://github.com/user-attachments/assets/9034a350-47dc-4906-bc84-4ed2c3d882f4)
 
 
 ## Requirements
