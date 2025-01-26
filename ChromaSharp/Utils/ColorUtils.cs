@@ -123,6 +123,14 @@ namespace ChromaSharp.Utils
             );
         }
 
+        public static Cmyk ToCmyk(Ycbcr ycbcr) => ToCmyk(ToRgb(ycbcr));
+
+        public static Cmyk ToCmyk(Hsv hsv) => ToCmyk(ToRgb(hsv));
+
+        public static Cmyk ToCmyk(Hsl hsl) => ToCmyk(ToRgb(hsl));
+
+        public static Cmyk ToCmyk(Cmyk cmyk) => cmyk;
+
         public static Hsv ToHsv(Rgb rgb)
         {
             double r = rgb.R / 255.0;
@@ -148,6 +156,14 @@ namespace ChromaSharp.Utils
 
             return new Hsv(h, s, v);
         }
+
+        public static Hsv ToHsv(Ycbcr ycbcr) => ToHsv(ToRgb(ycbcr));
+
+        public static Hsv ToHsv(Cmyk cmyk) => ToHsv(ToRgb(cmyk));
+
+        public static Hsv ToHsv(Hsl hsl) => ToHsv(ToRgb(hsl));
+
+        public static Hsv ToHsv(Hsv hsv) => hsv;
 
         public static Hsl ToHsl(Rgb rgb)
         {
@@ -175,6 +191,14 @@ namespace ChromaSharp.Utils
             return new Hsl(h, s, l);
         }
 
+        public static Hsl ToHsl(Ycbcr ycbcr) => ToHsl(ToRgb(ycbcr));
+
+        public static Hsl ToHsl(Cmyk cmyk) => ToHsl(ToRgb(cmyk));
+
+        public static Hsl ToHsl(Hsv hsv) => ToHsl(ToRgb(hsv));
+
+        public static Hsl ToHsl(Hsl hsl) => hsl;
+
         public static Ycbcr ToYcbcr(Rgb rgb)
         {
             double y = 0.299 * rgb.R + 0.587 * rgb.G + 0.114 * rgb.B;
@@ -183,5 +207,13 @@ namespace ChromaSharp.Utils
 
             return new Ycbcr(y, cb, cr);
         }
+
+        public static Ycbcr ToYcbcr(Cmyk cmyk) => ToYcbcr(ToRgb(cmyk));
+
+        public static Ycbcr ToYcbcr(Hsv hsv) => ToYcbcr(ToRgb(hsv));
+
+        public static Ycbcr ToYcbcr(Hsl hsl) => ToYcbcr(ToRgb(hsl));
+
+        public static Ycbcr ToYcbcr(Ycbcr ycbcr) => ycbcr;
     }
 }
