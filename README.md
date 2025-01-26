@@ -17,8 +17,8 @@ var rgb = new Rgb(128, 64, 32);
 var cmyk = ColorUtils.ToCmyk(rgb);
 Console.WriteLine($"CMYK: (C: {cmyk.C:F2}, M: {cmyk.M:F2}, Y: {cmyk.Y:F2}, K: {cmyk.K:F2})");
 
-// Step 3: Convert RGB to HSV
-var hsv = ColorUtils.ToHsv(rgb);
+// Step 3: Convert CMYK to HSV
+var hsv = ColorUtils.ToHsv(cmyk);
 Console.WriteLine($"HSV: (H: {hsv.H:F2}, S: {hsv.S:F2}, V: {hsv.V:F2})");
 ```
 
