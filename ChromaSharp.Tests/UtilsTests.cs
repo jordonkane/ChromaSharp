@@ -2,7 +2,7 @@ using NUnit.Framework;
 
 namespace ChromaSharp.Tests
 {
-    [TestFixture] // Optional but recommended
+    [TestFixture]
     public class UtilsTests
     {
         [Test]
